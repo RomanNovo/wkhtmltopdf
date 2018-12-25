@@ -846,6 +846,11 @@ void PdfConverterPrivate::spoolPage(int page) {
 				elm.evaluateJavaScript("this.checked;").toBool(),
 				name,
 				elm.evaluateJavaScript("this.readOnly;").toBool());
+		} else if (type == "signature") {
+			painter->addSignatureField(
+				webPrinter->elementLocation(elm).second,
+				name,
+				elm.evaluateJavaScript("this.readOnly;").toBool());
 		}
 	}
 	for (QHash<QString, QWebElement>::iterator i=pageAnchors[page+1].begin();
